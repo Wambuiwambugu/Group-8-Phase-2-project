@@ -177,38 +177,102 @@
       "dailyActivities": [
         {
           "id": 1,
-          "date": "",
-          "walking": 0,
-          "sleep": 0,
-          "waterIntake": 0,
-          "workoutTime": 0
+          "date": "2023-06-07",
+          "walking": 34,
+          "sleep": 65,
+          "waterIntake": 23,
+          "workoutTime": 54
+        },
+        {
+          "id": 2,
+          "date": "2023-06-07",
+          "walking": 43,
+          "sleep": 765,
+          "waterIntake": 34,
+          "workoutTime": 76
+        },
+        {
+          "id": 3,
+          "date": "2023-06-07",
+          "walking": 76,
+          "sleep": 23,
+          "waterIntake": 30,
+          "workoutTime": 27
+        },
+        {
+          "id": 4,
+          "date": "2023-06-07",
+          "walking": 64,
+          "sleep": 23,
+          "waterIntake": 16,
+          "workoutTime": 63
         }
       ],
       "id": 8
     },
     {
-      "date": "2023-06-15",
-      "walking": "4",
-      "sleep": "-4",
-      "waterIntake": "4",
-      "workoutTime": "-5",
+      "date": "2023-06-07",
+      "walking": "56",
+      "sleep": "87",
+      "waterIntake": "678",
+      "workoutTime": "987",
       "id": 9
     },
     {
-      "date": "2023-06-15",
-      "walking": "4",
-      "sleep": "-4",
-      "waterIntake": "4",
-      "workoutTime": "-5",
+      "date": "2023-06-22",
+      "walking": "-3",
+      "sleep": "5",
+      "waterIntake": "-6",
+      "workoutTime": "5",
       "id": 10
     },
     {
-      "date": "2023-06-15",
-      "walking": "-5",
-      "sleep": "6",
-      "waterIntake": "-6",
-      "workoutTime": "6",
+      "date": "2023-06-14",
+      "walking": "4",
+      "sleep": "-5",
+      "waterIntake": "5",
+      "workoutTime": "-6",
       "id": 11
+    },
+    {
+      "date": "2023-06-07",
+      "walking": "-4",
+      "sleep": "5",
+      "waterIntake": "-4",
+      "workoutTime": "6",
+      "id": 12
+    },
+    {
+      "date": "2023-06-15",
+      "walking": "3",
+      "sleep": "-5",
+      "waterIntake": "2",
+      "workoutTime": "-4",
+      "id": 13
+    },
+    {
+      "date": "2023-06-14",
+      "walking": "-4",
+      "sleep": "-6",
+      "waterIntake": "-5",
+      "workoutTime": "-5",
+      "id": 14
+    },
+    {
+      "date": "2023-06-07",
+      "walking": "3",
+      "sleep": "-5",
+      "waterIntake": "5",
+      "workoutTime": "-5",
+      "id": 15
+    },
+    {
+      "date": "2023-06-04",
+      "walking": "-4",
+      "sleep": "-6",
+      "waterIntake": "-5",
+      "workoutTime": "-5",
+      "id": 16
     }
   ]
 }

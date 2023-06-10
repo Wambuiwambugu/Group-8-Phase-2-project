@@ -3,7 +3,9 @@ import AddDailyActivity from "./AddDailyActivities";
 import ActivityList from "./ActivityList";
 
 function ActivitiesContainer({ currentUser, baseUrl }) {
+
   const [userData, setUserData] = useState([]);
+  const [updateActivity, setUpdateActivity]=useState([])
   // const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     date: "",
@@ -13,22 +15,23 @@ function ActivitiesContainer({ currentUser, baseUrl }) {
     sleep: "",
   });
 
-  // console.log(userData);
-  
-
   useEffect(() => {
     if (currentUser) {
       setUserData([currentUser]);
     }
   }, [currentUser]);
 
-  const ActivityToPost = {
+  const activityToPost = {
     date: formData.date,
     walking: formData.walking,
     sleep: formData.sleep,
     waterIntake: formData.waterintake,
     workoutTime: formData.workout,
   };
+
+  const dailyActivities = currentUser.dailyActivities;
+
+
 
   const onChangeHandler = (e) => {
     setFormData({
@@ -37,34 +40,42 @@ function ActivitiesContainer({ currentUser, baseUrl }) {
     });
   };
 
-  // console.log(userData);
+  
 
-  async function postUserActivities() {
-    try {
-      const resp = await fetch(baseUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(ActivityToPost),
+
+  const postUserActivities = function () {
+    fetch(baseUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(activityToPost),
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        setUpdateActivity(...userData, data);
+      })
+      .catch((error) => {
+        console.log("Error:", error);
       });
-      const data = await resp.json();
-      console.log(data);
-      // Handle the response data here
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(formData);
     postUserActivities();
+  
   };
 
-  const deleteActivityHandler = () => {
-    console.log("This has been deleted");
+  const deleteActivityHandler = (id) => {
+    console.log("This has been deleted", id);
   };
+
+  
 
   return (
     <div className="min-h-screen min-w-full pt-5 bg-blue-200">
@@ -75,7 +86,7 @@ function ActivitiesContainer({ currentUser, baseUrl }) {
       />
 
       <ActivityList
-        userData={userData}
+        dailyActivities={dailyActivities}
         deleteActivity={deleteActivityHandler}
       />
     </div>

@@ -1,7 +1,7 @@
 import LoginSignup from "./components/Login/LoginSignup";
 import Header from "./components/Landingpage/Header";
 import Landingpage from "./components/Landingpage/Landingpage";
-import "./components/Landingpage/Landingpage.css";
+// import "./components/Landingpage/Landingpage.css";
 import ActivitiesContainer from "./components/Activities/ActivitiesContainer";
 
 import React from "react";
@@ -32,7 +32,6 @@ function App() {
     fetch(`${baseUrl}?email=${email}&password=${password}`)
       .then((response) => response.json())
       .then((data) => {
-
         setCurrentUser(data[0]);
         // if (data.length > 0) {
         //   console.log("Logged in successfully!");
@@ -114,7 +113,36 @@ function App() {
     setError("");
     setUserData([]);
   };
-console.log(currentUser);
+  console.log(currentUser);
+
+  return (
+    <div className="App">
+      {/* <Header />
+    <Landingpage /> */}
+      {/* <ActivitiesContainer /> 
+      {!currentUser ? (
+        <LoginSignup
+          isLogin={isLogin}
+          setIsLogin={setIsLogin}
+          currentUser={currentUser}
+          error={error}
+          setError={setError}
+          handleLogin={handleLogin}
+          handleSignup={handleSignup}
+          userData={userData}
+        />
+      ) : (
+        null(
+          <ActivitiesContainer
+            currentUser={currentUser}
+            baseUrl={baseUrl}
+            // handleLogout={handleLogout}
+          />
+        )
+      )}
+    </div>
+  );
+  
 
   return (
     <div className="App">

@@ -103,7 +103,7 @@ function AddDailyActivity({ changeHandler, submitHandler, formData }) {
             </div>
             <button
               type="submit"
-              className="bg-blue-500 text-white px-4 py-2 mt-4 rounded hover:bg-blue-600"
+              // className="bg-blue-500 text-white px-4 py-2 mt-4 rounded hover:bg-blue-600"
               // className="bg-green-600 text-white px-4 py-2 mt-4 rounded hover:bg-green-400"
               disabled={
                 date === "" ||
