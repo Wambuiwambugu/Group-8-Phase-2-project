@@ -1,28 +1,19 @@
-import Landingpage from './components/Landingpage/Landingpage';
-import Header from './components/Landingpage/Header';
-// import ActivitiesContainer from './components/Activities/ActivitiesContainer'
-// import Dashboard from "./components/Dashboard/Dashboard";
-import LoginSignup from './components/Login/LoginSignup';
-// import LoginSignup from "./Components/Login/LoginSignup";
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import LoginSignup from "./components/Login/LoginSignup";
+import Header from "./components/Landingpage/Header";
+import Landingpage from "./components/Landingpage/Landingpage";
+import Dashboard from "./components/Dashboard/Dashboard";
 
-
-import { useNavigate } from "react-router-dom";
-
-
-
+import "./components/Landingpage/Landingpage.css";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [error, setError] = useState("");
   const [userData, setUserData] = useState([]);
+  const baseUrl = "http://localhost:8080/users";
+  const [showLoginSignup, setShowLoginSignup] = useState(false);
 
-  const navigate = useNavigate()
-
-  const baseUrl = 'http://localhost:8080/users';
   useEffect(() => {
     fetch(baseUrl)
       .then((res) => res.json())
@@ -35,37 +26,18 @@ function App() {
       });
   }, []);
 
-
-function clickHandler() {
-  navigate("/login");
-  
-
-}
-
   const handleLogin = (email, password) => {
     fetch(`${baseUrl}?email=${email}&password=${password}`)
       .then((response) => response.json())
       .then((data) => {
-
-
         setCurrentUser(data[0]);
-        // if (data.length > 0) {
-        //   console.log("Logged in successfully!");
-        //   setCurrentUser(data[0]);
-        //   setError("");
-        //   clearInputFields();
-        // } else {
-        //   setError("Wrong email or password!");
-
-        // }
+        setShowLoginSignup(false); // Redirect to dashboard
       })
       .catch((error) => {
         console.error("Error logging in:", error);
         setError("An error occurred while logging in. Please try again later.");
       });
   };
-      
-  console.log(currentUser);
 
   const handleSignup = (name, email, password, confirmPassword) => {
     const existingUser = userData.find((user) => user.email === email);
@@ -106,7 +78,7 @@ function clickHandler() {
       ],
     };
 
-    fetch("http://localhost:3000/users", {
+    fetch(baseUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -118,6 +90,8 @@ function clickHandler() {
         console.log("User signed up successfully!", data);
         clearInputFields();
         setError("");
+        setCurrentUser(newUser); // Simulate successful signup
+        setShowLoginSignup(false); // Redirect to dashboard
       })
       .catch((error) => {
         console.error("Error signing up:", error);
@@ -126,32 +100,41 @@ function clickHandler() {
   };
 
   const clearInputFields = () => {
-    // Clear input fields
+    // Clear input fields and reset state
     setIsLogin(false);
     setCurrentUser(null);
     setError("");
     setUserData([]);
   };
-console.log(currentUser);
 
-  return (<div className="App">
-    <Header />
-    <Landingpage clickHandler={clickHandler} />
-    {isLogin ? (
-      <LoginSignup
-        isLogin={isLogin}
-        setIsLogin={setIsLogin}
-        currentUser={currentUser}
-        error={error}
-        setError={setError}
-        handleLogin={handleLogin}
-        handleSignup={handleSignup}
-        userData={userData}
+  const handleGetStarted = () => {
+    setShowLoginSignup(true);
+  };
 
-      />
-    ) : null}
-  </div>
+  const handleGoBack = () => {
+    setShowLoginSignup(false);
+  };
 
+  return (
+    <div className="App">
+      <Header />
+      {showLoginSignup ? (
+        <LoginSignup
+          isLogin={isLogin}
+          setIsLogin={setIsLogin}
+          currentUser={currentUser}
+          error={error}
+          handleLogin={handleLogin}
+          handleSignup={handleSignup}
+          goBack={handleGoBack}
+          setError={setError}
+        />
+      ) : currentUser ? (
+        <Dashboard userData={userData} />
+      ) : (
+        <Landingpage clickHandler={handleGetStarted} />
+      )}
+    </div>
   );
 }
 
