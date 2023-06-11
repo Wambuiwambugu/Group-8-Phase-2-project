@@ -4,7 +4,7 @@ import image from "../../images/image.png";
 import "./HealthGoals.css";
 //import axios from "axios";
 
-const BASE_URL = "https://my-json-server.typicode.com/Wambuiwambugu/Group-8-REST-API/db/id";
+const BASE_URL = "https://my-json-server.typicode.com/Wambuiwambugu/Group-8-REST-API/db/users";
 
 const HealthGoals = () => {
   const [goals, setGoals] = useState([]);

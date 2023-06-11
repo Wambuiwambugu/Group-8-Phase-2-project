@@ -76,6 +76,10 @@ body {
     align-items: center;
     justify-content: center;
     margin-top: -500px;
+    width: 50%;
+    margin-left: 50%;
+    margin-right: 50%;
+    margin-left: 100px;
   }
   .submit-button:hover {
     background-color: #45a049;
@@ -86,11 +90,11 @@ body {
     margin-bottom: 20px;
     float: left;
     margin-bottom: 20px;
-    width: 600px; 
+    width: 50%; 
     margin-right: 20px;
     display: flex;
     margin-left: 10px;
-    margin-right: 600px;
+    margin-right: 50%;
   }
   .image-container img {
     width: 100%; 
@@ -98,29 +102,7 @@ body {
     margin-right: 10px; 
     position: relative;
   }
-  @media (max-width: 68px) {
-    .image {
-      max-width: 80%; /* Adjust the image size as needed */
-    }
   
-    .form-group label,
-    .submit-button {
-      width: 100%;
-      /* Add additional styles to adjust the form inputs */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .image {
-      max-width: 60%; /* Adjust the image size as needed */
-    }
-  
-    .form-group input {
-      width: 100%;
-      /* Add additional styles to adjust the form inputs */
-    }
-  } 
-
 .delete-button {
   background-color: orange;
   color: #fff;
@@ -143,4 +125,15 @@ body {
 
 .delete-button:active {
   background-color: #b71c1c;
+}
+@media (max-width: 768px) {
+  .image-container,
+  .form-container {
+    width: 100%; 
+    margin: 0; 
+  }
+
+  .image-container img {
+    margin-right: 0; 
+  }
 }
