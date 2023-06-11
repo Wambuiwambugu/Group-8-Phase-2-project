@@ -5,7 +5,7 @@ import Landingpage from "./components/Landingpage/Landingpage";
 import Dashboard from "./components/Dashboard/Dashboard";
 import ActivitiesContainer from "./components/Activities/ActivitiesContainer";
 
-import "./components/Landingpage/Landingpage.css";
+// import "./components/Landingpage/Landingpage.css";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);

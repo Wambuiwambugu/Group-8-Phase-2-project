@@ -40,17 +40,15 @@ function ActivitiesContainer({ currentUser, baseUrl }) {
   };
 
   const postUserActivities = function () {
-    const activityToUpdate = {
-      ...currentUser,
-      dailyActivities: [...currentUser.dailyActivities, activityToPost],
-    };
+    const updatedActivities = [...userData.dailyActivities, activityToPost];
+    const updatedUserData = { ...userData, dailyActivities: updatedActivities };
 
     fetch(`${baseUrl}/${currentUser.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(activityToUpdate),
+      body: JSON.stringify(updatedUserData),
     })
       .then((resp) => {
         if (!resp.ok) {
@@ -59,7 +57,6 @@ function ActivitiesContainer({ currentUser, baseUrl }) {
         return resp.json();
       })
       .then((data) => {
-        console.log(data);
         setUserData(data); // Update userData with the response data
       })
       .catch((error) => {
@@ -80,7 +77,30 @@ function ActivitiesContainer({ currentUser, baseUrl }) {
   };
 
   const deleteActivityHandler = (id) => {
-    console.log("This has been deleted", id);
+    const updatedActivities = userData.dailyActivities.filter(
+      (activity) => activity.id !== id
+    );
+    const updatedUserData = { ...userData, dailyActivities: updatedActivities };
+
+    fetch(`${baseUrl}/${currentUser.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedUserData),
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        setUserData(data); // Update userData with the response data
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
   };
 
   return (
