@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import image from "../../images/image.png";
 import "./HealthGoals.css";
-import axios from "axios";
+//import axios from "axios";
 
 const BASE_URL = "https://my-json-server.typicode.com/Wambuiwambugu/Group-8-REST-API/db/id";
 
@@ -19,17 +19,37 @@ const HealthGoals = () => {
     fetchGoals();
   }, []);
 
-  const fetchGoals = async () => {
+  /*const fetchGoals = async () => {
     try {
       const response = await axios.get(BASE_URL);
       console.log("API response:", response.data);
-      setGoals(response.data || []);  // Assuming the response directly provides an array of user goals
+      setGoals(response.data || []);
+      //console.log(user.name);
+      //console.log(user.goals);
       setIsLoading(false);
     } catch (error) {
       console.error("Error fetching goals:", error);
       setIsLoading(false);
     }
+  };*/
+
+  const fetchGoals = async () => {
+    try {
+      const response = await fetch(BASE_URL);
+      if (response.ok) {
+        const data = await response.json();
+        console.log("API response:", data);
+        setGoals(data || []);
+        setIsLoading(false);
+      } else {
+        throw new Error("Request failed with status:", response.status);
+      }
+    } catch (error) {
+      console.error("Error fetching goals:", error);
+      setIsLoading(false);
+    }
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -179,5 +199,6 @@ const HealthGoals = () => {
 };
 
 export default HealthGoals;
+
 
 

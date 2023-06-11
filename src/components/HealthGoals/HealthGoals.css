@@ -96,5 +96,27 @@ body {
     width: 100%; 
     height: auto;
     margin-right: 10px; 
+    position: relative;
+  }
+  @media (max-width: 68px) {
+    .image {
+      max-width: 80%; /* Adjust the image size as needed */
+    }
+  
+    .form-group label,
+    .submit-button {
+      width: 100%;
+      /* Add additional styles to adjust the form inputs */
+    }
   }
   
+  @media (max-width: 480px) {
+    .image {
+      max-width: 60%; /* Adjust the image size as needed */
+    }
+  
+    .form-group input {
+      width: 100%;
+      /* Add additional styles to adjust the form inputs */
+    }
+  } 
