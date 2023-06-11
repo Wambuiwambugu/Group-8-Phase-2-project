@@ -120,3 +120,27 @@ body {
       /* Add additional styles to adjust the form inputs */
     }
   } 
+
+.delete-button {
+  background-color: orange;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+  transform: scale(1.1);
+}
+
+.delete-button:focus {
+  outline: none;
+}
+
+.delete-button:active {
+  background-color: #b71c1c;
+}

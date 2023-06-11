@@ -19,20 +19,7 @@ const HealthGoals = () => {
     fetchGoals();
   }, []);
 
-  /*const fetchGoals = async () => {
-    try {
-      const response = await axios.get(BASE_URL);
-      console.log("API response:", response.data);
-      setGoals(response.data || []);
-      //console.log(user.name);
-      //console.log(user.goals);
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error fetching goals:", error);
-      setIsLoading(false);
-    }
-  };*/
-
+ 
   const fetchGoals = async () => {
     try {
       const response = await fetch(BASE_URL);
@@ -80,6 +67,11 @@ const HealthGoals = () => {
     setSelectedDate("");
   };
 
+  const handleDelete = (date) => {
+    const updatedGoals = goals.filter((goal) => goal.date !== date);
+    setGoals(updatedGoals);
+  };
+
   const getGoalString = (goal, unit) => {
     return `${goal} ${unit} `;
   };
@@ -101,6 +93,7 @@ const HealthGoals = () => {
                   <th>Walking</th>
                   <th>Sleeping</th>
                   <th>Water Intake</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
           <tbody>
@@ -111,6 +104,7 @@ const HealthGoals = () => {
                 <td>{getGoalString(goal.walking, 'meters')}</td>
                 <td>{getGoalString(goal.sleeping, 'hours')}</td>
                 <td>{getGoalString(goal.waterIntake, 'cups')}</td>
+                <td><button onClick={() => handleDelete(goal.date)} className="delete-button">Delete</button></td>
               </tr>
             ))}
           </tbody>
