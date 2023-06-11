@@ -1,20 +1,19 @@
+import React, { useState, useEffect } from "react";
 import LoginSignup from "./components/Login/LoginSignup";
 import Header from "./components/Landingpage/Header";
 import Landingpage from "./components/Landingpage/Landingpage";
-// import "./components/Landingpage/Landingpage.css";
+import Dashboard from "./components/Dashboard/Dashboard";
 import ActivitiesContainer from "./components/Activities/ActivitiesContainer";
 
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-// import "./App.css";
+import "./components/Landingpage/Landingpage.css";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [error, setError] = useState("");
   const [userData, setUserData] = useState([]);
-  const baseUrl = " http://localhost:3000/users";
+  const baseUrl = "http://localhost:3000/users";
+  const [showLoginSignup, setShowLoginSignup] = useState(false);
 
   useEffect(() => {
     fetch(baseUrl)
@@ -33,14 +32,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setCurrentUser(data[0]);
-        // if (data.length > 0) {
-        //   console.log("Logged in successfully!");
-        //   setCurrentUser(data[0]);
-        //   setError("");
-        //   clearInputFields();
-        // } else {
-        //   setError("Wrong email or password!");
-        // }
+        setShowLoginSignup(false); // Redirect to dashboard
       })
       .catch((error) => {
         console.error("Error logging in:", error);
@@ -87,7 +79,7 @@ function App() {
       ],
     };
 
-    fetch("http://localhost:3000/users", {
+    fetch(baseUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -99,6 +91,8 @@ function App() {
         console.log("User signed up successfully!", data);
         clearInputFields();
         setError("");
+        setCurrentUser(newUser); // Simulate successful signup
+        setShowLoginSignup(false); // Redirect to dashboard
       })
       .catch((error) => {
         console.error("Error signing up:", error);
@@ -107,47 +101,25 @@ function App() {
   };
 
   const clearInputFields = () => {
-    // Clear input fields
+    // Clear input fields and reset state
     setIsLogin(false);
     setCurrentUser(null);
     setError("");
     setUserData([]);
   };
-  console.log(currentUser);
+
+  // const handleGetStarted = () => {
+  //   setShowLoginSignup(true);
+  // };
+
+  // const handleGoBack = () => {
+  //   setShowLoginSignup(false);
+  // };
 
   return (
     <div className="App">
       {/* <Header />
     <Landingpage /> */}
-      {/* <ActivitiesContainer /> 
-      {!currentUser ? (
-        <LoginSignup
-          isLogin={isLogin}
-          setIsLogin={setIsLogin}
-          currentUser={currentUser}
-          error={error}
-          setError={setError}
-          handleLogin={handleLogin}
-          handleSignup={handleSignup}
-          userData={userData}
-        />
-      ) : (
-        null(
-          <ActivitiesContainer
-            currentUser={currentUser}
-            baseUrl={baseUrl}
-            // handleLogout={handleLogout}
-          />
-        )
-      )}
-    </div>
-  );
-  
-
-  return (
-    <div className="App">
-      {/* <Header />
-      <Landingpage /> */}
 
       {/* <ActivitiesContainer /> */}
 
@@ -170,6 +142,25 @@ function App() {
         />
       )}
     </div>
+    // <div className="App">
+    //   <Header />
+    //   {showLoginSignup ? (
+    //     <LoginSignup
+    //       isLogin={isLogin}
+    //       setIsLogin={setIsLogin}
+    //       currentUser={currentUser}
+    //       error={error}
+    //       handleLogin={handleLogin}
+    //       handleSignup={handleSignup}
+    //       goBack={handleGoBack}
+    //       setError={setError}
+    //     />
+    //   ) : currentUser ? (
+    //     <Dashboard userData={userData} />
+    //   ) : (
+    //     <Landingpage clickHandler={handleGetStarted} />
+    //   )}
+    // </div>
   );
 }
 

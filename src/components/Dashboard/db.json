@@ -1,3 +1,4 @@
+
 {
   "users": [
     {
@@ -16,19 +17,49 @@
       "dailyActivities": [
         {
           "id": 1,
-          "date": "06/15/2023",
+          "date": "2023-06-01",
           "walking": 10000,
           "sleep": 5,
-          "waterIntake": 9,
+          "waterIntake": 8,
           "workoutTime": 30
+
         },
         {
-          "id": 1,
-          "date": "06/17/2023",
-          "walking": 20000,
-          "sleep": 10,
-          "waterIntake": 30,
-          "workoutTime": 200
+          "id": 2,
+          "date": "2023-06-02",
+          "walking": 10000,
+          "sleep": 5,
+          "waterIntake": 8,
+          "workoutTime": 30
+
+        },
+        {
+          "id": 3,
+          "date": "2023-06-03",
+          "walking": 7000,
+          "sleep": 5,
+          "waterIntake": 8,
+          "workoutTime": 30
+
+        },
+        {
+          "id": 4,
+          "date": "2023-06-04",
+          "walking": 900,
+          "sleep": 5,
+          "waterIntake": 8,
+          "workoutTime": 30
+
+        },
+        {
+          "id": 5,
+          "date": "2023-06-05",
+          "walking": 1000,
+          "sleep": 5,
+          "waterIntake": 8,
+          "workoutTime": 30
+
+
         }
       ]
     },
@@ -125,19 +156,11 @@
           "sleep": 5,
           "waterIntake": 8,
           "workoutTime": 30
-        },
-        {
-          "date": "2023-06-21",
-          "walking": "9999",
-          "sleep": "44444",
-          "waterIntake": "3333",
-          "workoutTime": "6666"
         }
       ]
     },
     {
-      "id": 6,
-      "name": "Maya",
+      "name": "maya",
       "email": "maymunaabdi07@gmail.com",
       "password": "123456789",
       "goals": {
@@ -154,61 +177,9 @@
           "sleep": 0,
           "waterIntake": 0,
           "workoutTime": 0
-        },
-        {
-          "date": "2023-06-14",
-          "walking": "26778",
-          "sleep": "2345",
-          "waterIntake": "12345",
-          "workoutTime": "23456"
-        }
-      ]
-    },
-    {
-      "name": "steve",
-      "email": "steve@gmail.com",
-      "password": "12345678",
-      "goals": {
-        "walking": 0,
-        "sleep": 0,
-        "waterIntake": 0,
-        "workoutTime": 0
-      },
-      "dailyActivities": [
-        {
-          "id": 1,
-          "date": "",
-          "walking": 0,
-          "sleep": 0,
-          "waterIntake": 0,
-          "workoutTime": 0
-        },
-        {
-          "id": "87b86ab3-1431-4193-a33e-34c55db0ecb7",
-          "date": "2023-05-31",
-          "walking": "1234",
-          "sleep": "1234",
-          "waterIntake": "123",
-          "workoutTime": "1234"
-        },
-        {
-          "id": "ea962e23-747b-412d-9741-6c75fb73c1cc",
-          "date": "2023-06-14",
-          "walking": "6543",
-          "sleep": "543",
-          "waterIntake": "543",
-          "workoutTime": "43"
-        },
-        {
-          "id": "f04b5913-f0ed-4403-a820-a66dc982a834",
-          "date": "2023-06-15",
-          "walking": "6543",
-          "sleep": "7654",
-          "waterIntake": "7654",
-          "workoutTime": "6543"
         }
       ],
-      "id": 7
+      "id": 6
     }
-  ]
+    ]
 }

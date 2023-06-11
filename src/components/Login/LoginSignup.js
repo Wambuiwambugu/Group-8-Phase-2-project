@@ -12,6 +12,7 @@ const LoginSignup = (props) => {
     setError,
     handleLogin,
     handleSignup,
+    goBack
   } = props;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -144,6 +145,7 @@ const LoginSignup = (props) => {
                 >
                   Log In
                 </span>
+                <button onClick={goBack}>Go Back</button>
               </div>
             )}
           </div>

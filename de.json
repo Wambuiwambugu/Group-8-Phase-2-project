@@ -21,6 +21,15 @@
           "sleep": 5,
           "waterIntake": 9,
           "workoutTime": 30
+        },
+
+        {
+          "id": 2,
+          "date": "06/17/2023",
+          "walking": 20000,
+          "sleep": 10,
+          "waterIntake": 30,
+          "workoutTime": 200
         }
       ]
     }
