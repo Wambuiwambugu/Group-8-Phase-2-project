@@ -5,16 +5,18 @@ import LoginSignup from "./components/Login/LoginSignup";
 import Header from "./components/Landingpage/Header";
 import Landingpage from "./components/Landingpage/Landingpage";
 import Dashboard from "./components/Dashboard/Dashboard";
-import Footer from "./components/Footer/Footer";
 
-import "./components/Landingpage/Landingpage.css";
+import ActivitiesContainer from "./components/Activities/ActivitiesContainer";
+
+
+// import "./components/Landingpage/Landingpage.css";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [error, setError] = useState("");
   const [userData, setUserData] = useState([]);
-  const baseUrl = "http://localhost:8080/users";
+  const baseUrl = "http://localhost:3000/users";
   const [showLoginSignup, setShowLoginSignup] = useState(false);
 
   useEffect(() => {
@@ -131,6 +133,7 @@ function App() {
     setUserData([]);
   };
 
+
   const handleGetStarted = () => {
     setShowLoginSignup(true);
   };
@@ -165,7 +168,27 @@ function App() {
         />
       </Routes>
       <Footer />
+
     </div>
+    // <div className="App">
+    //   <Header />
+    //   {showLoginSignup ? (
+    //     <LoginSignup
+    //       isLogin={isLogin}
+    //       setIsLogin={setIsLogin}
+    //       currentUser={currentUser}
+    //       error={error}
+    //       handleLogin={handleLogin}
+    //       handleSignup={handleSignup}
+    //       goBack={handleGoBack}
+    //       setError={setError}
+    //     />
+    //   ) : currentUser ? (
+    //     <Dashboard userData={userData} />
+    //   ) : (
+    //     <Landingpage clickHandler={handleGetStarted} />
+    //   )}
+    // </div>
   );
 }
 

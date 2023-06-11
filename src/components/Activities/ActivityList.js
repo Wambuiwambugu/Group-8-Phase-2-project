@@ -2,7 +2,9 @@ import React from "react";
 // import "./Activity.css";
 import DailyActivity from "./DailyActivity";
 
-function ActivityList({ userData, deleteActivity }) {
+function ActivityList({ userActivities, deleteActivity }) {
+  console.log(userActivities);
+  
   // console.log(userData);
   return (
     <div className="flex justify-center bg-gray-700 max-w-7xl mx-auto max-h-screen">
@@ -19,8 +21,12 @@ function ActivityList({ userData, deleteActivity }) {
         </thead>
         <tbody>
           {/* Render activity rows here */}
-          {userData.map((user) => (
-            <DailyActivity key={user.id} user={user} deleteActivity={deleteActivity}/>
+          {userActivities.map((activity) => (
+            <DailyActivity
+              key={activity.id}
+              activity={activity}
+              deleteActivity={deleteActivity}
+            />
           ))}
         </tbody>
       </table>
@@ -29,6 +35,3 @@ function ActivityList({ userData, deleteActivity }) {
 }
 
 export default ActivityList;
-
-
-

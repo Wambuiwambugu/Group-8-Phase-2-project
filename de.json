@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Kennedy",
+      "email": "Kennedy@example.com",
+      "password": "kennedy1",
+      "goals": [
+        {
+          "walking": 10000,
+          "sleep": 5,
+          "waterIntake": 8,
+          "workoutTime": 30
+        }
+      ],
+      "dailyActivities": [
+        {
+          "id": 1,
+          "date": "06/15/2023",
+          "walking": 10000,
+          "sleep": 5,
+          "waterIntake": 9,
+          "workoutTime": 30
+        },
+
+        {
+          "id": 2,
+          "date": "06/17/2023",
+          "walking": 20000,
+          "sleep": 10,
+          "waterIntake": 30,
+          "workoutTime": 200
+        }
+      ]
+    }
+  ]
+}

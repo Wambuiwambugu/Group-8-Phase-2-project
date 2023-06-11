@@ -21,6 +21,14 @@
           "sleep": 5,
           "waterIntake": 9,
           "workoutTime": 30
+        },
+        {
+          "id": 1,
+          "date": "06/17/2023",
+          "walking": 20000,
+          "sleep": 10,
+          "waterIntake": 30,
+          "workoutTime": 200
         }
       ]
     },
@@ -117,8 +125,16 @@
           "sleep": 5,
           "waterIntake": 8,
           "workoutTime": 30
+        },
+        {
+          "date": "2023-06-21",
+          "walking": "9999",
+          "sleep": "44444",
+          "waterIntake": "3333",
+          "workoutTime": "6666"
         }
       ]
     }
   ]
 }
+

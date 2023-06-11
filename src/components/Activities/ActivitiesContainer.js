@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import AddDailyActivity from "./AddDailyActivities";
 import ActivityList from "./ActivityList";
+import { v4 as uuidv4 } from "uuid";
 
 function ActivitiesContainer({ currentUser, baseUrl }) {
-  const [userData, setUserData] = useState([]);
-  // const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState({ dailyActivities: [] });
   const [formData, setFormData] = useState({
     date: "",
     walking: "",
@@ -13,16 +13,18 @@ function ActivitiesContainer({ currentUser, baseUrl }) {
     sleep: "",
   });
 
-  // console.log(userData);
-  
-
   useEffect(() => {
     if (currentUser) {
-      setUserData([currentUser]);
+      setUserData(currentUser);
     }
   }, [currentUser]);
 
-  const ActivityToPost = {
+  const generateUniqueId = () => {
+    return uuidv4();
+  };
+
+  const activityToPost = {
+    id: generateUniqueId(),
     date: formData.date,
     walking: formData.walking,
     sleep: formData.sleep,
@@ -37,33 +39,68 @@ function ActivitiesContainer({ currentUser, baseUrl }) {
     });
   };
 
-  // console.log(userData);
+  const postUserActivities = function () {
+    const updatedActivities = [...userData.dailyActivities, activityToPost];
+    const updatedUserData = { ...userData, dailyActivities: updatedActivities };
 
-  async function postUserActivities() {
-    try {
-      const resp = await fetch(baseUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(ActivityToPost),
+    fetch(`${baseUrl}/${currentUser.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedUserData),
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        setUserData(data); // Update userData with the response data
+      })
+      .catch((error) => {
+        console.log("Error:", error);
       });
-      const data = await resp.json();
-      console.log(data);
-      // Handle the response data here
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(formData);
     postUserActivities();
+    setFormData({
+      date: "",
+      walking: "",
+      workout: "",
+      waterintake: "",
+      sleep: "",
+    });
   };
 
-  const deleteActivityHandler = () => {
-    console.log("This has been deleted");
+  const deleteActivityHandler = (id) => {
+    const updatedActivities = userData.dailyActivities.filter(
+      (activity) => activity.id !== id
+    );
+    const updatedUserData = { ...userData, dailyActivities: updatedActivities };
+
+    fetch(`${baseUrl}/${currentUser.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedUserData),
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return resp.json();
+      })
+      .then((data) => {
+        setUserData(data); // Update userData with the response data
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
   };
 
   return (
@@ -75,7 +112,7 @@ function ActivitiesContainer({ currentUser, baseUrl }) {
       />
 
       <ActivityList
-        userData={userData}
+        userActivities={userData.dailyActivities}
         deleteActivity={deleteActivityHandler}
       />
     </div>
