@@ -1,9 +1,13 @@
+// App.js
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes, Link, Navigate, useNavigate } from "react-router-dom";
 import LoginSignup from "./components/Login/LoginSignup";
 import Header from "./components/Landingpage/Header";
 import Landingpage from "./components/Landingpage/Landingpage";
 import Dashboard from "./components/Dashboard/Dashboard";
+
 import ActivitiesContainer from "./components/Activities/ActivitiesContainer";
+
 
 // import "./components/Landingpage/Landingpage.css";
 
@@ -18,7 +22,14 @@ function App() {
   useEffect(() => {
     fetch(baseUrl)
       .then((res) => res.json())
-      .then((data) => setUserData(data))
+      .then((data) => {
+        setUserData(data);
+        const storedCurrentUser = localStorage.getItem("currentUser");
+        if (storedCurrentUser) {
+          const parsedUser = JSON.parse(storedCurrentUser);
+          setCurrentUser(parsedUser);
+        }
+      })
       .catch((error) => {
         console.error("Error retrieving user data:", error);
         setError(
@@ -27,18 +38,31 @@ function App() {
       });
   }, []);
 
+
+  const navigate = useNavigate();
   const handleLogin = (email, password) => {
     fetch(`${baseUrl}?email=${email}&password=${password}`)
       .then((response) => response.json())
       .then((data) => {
-        setCurrentUser(data[0]);
-        setShowLoginSignup(false); // Redirect to dashboard
+        const user = data[0];
+        setCurrentUser(user);
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        setShowLoginSignup(false);
+  
+        // Log the name to the console only if currentUser is null
+        if (!currentUser) {
+          // console.log("Logged in as:", user.name);
+        }
+  
+        // Navigate to the dashboard
+        navigate("/dashboard");
       })
       .catch((error) => {
         console.error("Error logging in:", error);
         setError("An error occurred while logging in. Please try again later.");
       });
   };
+  
 
   const handleSignup = (name, email, password, confirmPassword) => {
     const existingUser = userData.find((user) => user.email === email);
@@ -91,7 +115,8 @@ function App() {
         console.log("User signed up successfully!", data);
         clearInputFields();
         setError("");
-        setCurrentUser(newUser); // Simulate successful signup
+        setCurrentUser(newUser); // Set the newly signed up user as the current user
+        localStorage.setItem("currentUser", JSON.stringify(newUser));
         setShowLoginSignup(false); // Redirect to dashboard
       })
       .catch((error) => {
@@ -108,39 +133,42 @@ function App() {
     setUserData([]);
   };
 
-  // const handleGetStarted = () => {
-  //   setShowLoginSignup(true);
-  // };
 
-  // const handleGoBack = () => {
-  //   setShowLoginSignup(false);
-  // };
+  const handleGetStarted = () => {
+    setShowLoginSignup(true);
+  };
+  const handleLogout = () => {
+    setCurrentUser(null);
+    setUserData([]);
+    navigate("/loginSignup");
+  };
 
   return (
     <div className="App">
-      {/* <Header />
-    <Landingpage /> */}
-
-      {/* <ActivitiesContainer /> */}
-
-      {!currentUser ? (
-        <LoginSignup
-          isLogin={isLogin}
-          setIsLogin={setIsLogin}
-          currentUser={currentUser}
-          error={error}
-          setError={setError}
-          handleLogin={handleLogin}
-          handleSignup={handleSignup}
-          userData={userData}
+      <Header />
+      <Routes>
+        <Route path="/" element={<Landingpage clickHandler={handleGetStarted} />} />
+        <Route
+          path="/loginSignup"
+          element={
+            <LoginSignup
+              isLogin={isLogin}
+              setIsLogin={setIsLogin}
+              currentUser={currentUser}
+              error={error}
+              handleLogin={handleLogin}
+              handleSignup={handleSignup}
+              setError={setError}
+            />
+          }
         />
-      ) : (
-        <ActivitiesContainer
-          currentUser={currentUser}
-          baseUrl={baseUrl}
-          // handleLogout={handleLogout}
+        <Route
+          path="/dashboard"
+          element={currentUser ? <Dashboard userData={currentUser} handleLogout={handleLogout} /> : <Navigate to="/loginSignup" />}
         />
-      )}
+      </Routes>
+      <Footer />
+
     </div>
     // <div className="App">
     //   <Header />

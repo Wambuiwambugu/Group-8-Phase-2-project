@@ -20,3 +20,4 @@ const Landingpage = ({ clickHandler }) => {
 };
 
 export default Landingpage;
+
