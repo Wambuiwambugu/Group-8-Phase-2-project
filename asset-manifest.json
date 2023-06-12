@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/Group-8-Phase-2-project/static/css/main.34c5b472.css",
+    "main.js": "/Group-8-Phase-2-project/static/js/main.990db939.js",
+    "static/media/image3.gif": "/Group-8-Phase-2-project/static/media/image3.74e786404d844a361bc0.gif",
+    "static/media/image1.gif": "/Group-8-Phase-2-project/static/media/image1.2f52a76bd2e9bb6fc8bf.gif",
+    "static/media/image2.gif": "/Group-8-Phase-2-project/static/media/image2.330106e8c19665af20b4.gif",
+    "static/media/Diet-lady-green.gif": "/Group-8-Phase-2-project/static/media/Diet-lady-green.629efaf622ad26ba5715.gif",
+    "static/media/image.png": "/Group-8-Phase-2-project/static/media/image.f2324964b5a7484cf796.png",
+    "index.html": "/Group-8-Phase-2-project/index.html",
+    "main.34c5b472.css.map": "/Group-8-Phase-2-project/static/css/main.34c5b472.css.map",
+    "main.990db939.js.map": "/Group-8-Phase-2-project/static/js/main.990db939.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.34c5b472.css",
+    "static/js/main.990db939.js"
+  ]
+}
