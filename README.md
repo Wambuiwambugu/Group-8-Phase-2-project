@@ -1,5 +1,7 @@
 # MY HEALTH APP
 
+MY HEALTH APP live link https://wambuiwambugu.github.io/Group-8-Phase-2-project/
+
 MyHealth is a React-based health app that allows users to track their health goals and daily activities.
 
 ## FEATURES
